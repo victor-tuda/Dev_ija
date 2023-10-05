@@ -1,25 +1,45 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import {View, Text, StyleSheet, ScrollView, Alert} from 'react-native';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import SocialSignInButtons from '../../components/SocialSignInButtons';
 import {useNavigation} from '@react-navigation/core';
+import { useForm } from 'react-hook-form'
+import { useRoute } from '@react-navigation/native'
+
+import { Auth } from 'aws-amplify';
 
 const ConfirmEmailScreen = () => {
+  const route = useRoute();
+  const { control, handleSubmit } = useForm();
   const [code, setCode] = useState('');
-
+  const [ username ] = useState(route?.params?.username)
+  
+  
   const navigation = useNavigation();
+  
 
-  const onConfirmPressed = () => {
-    navigation.navigate('Home');
+  const onConfirmPressed = async data => {
+    try{
+      const response = await Auth.confirmSignUp(username, code)
+      navigation.navigate('Home');
+    } catch(error){
+      Alert.alert("Oops", error.message);
+    }
+    
   };
 
   const onSignInPress = () => {
     navigation.navigate('SignIn');
   };
 
-  const onResendPress = () => {
-    console.warn('onResendPress');
+  const onResendPress = async () => {
+    try{
+      const response = await Auth.resendSignUp(username)
+    } catch(error){
+      Alert.alert("Oops", error.message);
+    }
+    
   };
 
   return (

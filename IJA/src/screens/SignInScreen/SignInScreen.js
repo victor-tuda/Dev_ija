@@ -1,4 +1,6 @@
+// importando bibliotecas react
 import React, {useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
 import {
   View,
   Text,
@@ -6,45 +8,55 @@ import {
   StyleSheet,
   useWindowDimensions,
   ScrollView,
+  Alert
 } from 'react-native';
+
+// importando bibliotecas amplify
+import { Auth,  Amplify } from 'aws-amplify';
+
+// importando bibliotecas locais
 import Logo from '../../../assets/images/Logo_1.png';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import SocialSignInButtons from '../../components/SocialSignInButtons';
-import {useNavigation} from '@react-navigation/native';
 
-import { Auth,  Amplify } from 'aws-amplify';
-
+// main component
 const SignInScreen = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const {height} = useWindowDimensions();
   const navigation = useNavigation();
+  const [loading, setLoading] = useState(false);
 
   async function signIn() {
+    if (loading) {
+      return;
+    }
+
+    setLoading(true);
     try {
       const user = await Amplify.Auth.signIn(username, password);
       console.log('User signed in:', user);
   
-      // Return the user object
-      return user;
+      return user; // Return the user object
     } catch (error) {
-      console.log('Error signing in', error);
-      throw error;
+      Alert.alert('Oops', error.message);
     }
+    setLoading(false);
   }
   
 
   const onSignInPressed = async () => {
-    try {
+    try { // Checa se o usuário conseguiu realizar o login
       const user = await signIn();
-      // Check if user is defined (i.e., sign-in was successful)
+      
       if (user) {
-        const role =  await Auth.currentAuthenticatedUser();
-        console.log(role.signInUserSession.accessToken.payload["cognito:groups"])
+        const userObj =  await Auth.currentAuthenticatedUser(); // Captura o objeto do usuario
+        const role = userObj.signInUserSession.accessToken.payload["cognito:groups"] // Captura o groupID do usuario
+        console.log(role);
 
-        navigation.navigate('Home');
+        navigation.navigate('Home'); //Navega para a tela Home
       } else {
         // Handle unsuccessful sign-in
         // You can display an error message to the user
@@ -86,7 +98,7 @@ const SignInScreen = () => {
           secureTextEntry
         />
 
-        <CustomButton text="Sign In" onPress={onSignInPressed} />
+        <CustomButton text={loading ? "Loading..." : "Sign In" } onPress={onSignInPressed} />
 
         <CustomButton
           text="Forgot password?"

@@ -16,10 +16,11 @@
     "@react-navigation/native-stack": "^6.9.14",
     "amazon-cognito-identity-js": "^6.3.6",
     "aws-amplify": "^5.3.11",
+    "aws-sdk": "^2.1471.0",
     "expo": "~49.0.12",
     "expo-status-bar": "~1.6.0",
     "react": "18.2.0",
-    "react-hook-form": "^7.46.2",
+    "react-hook-form": "^7.47.0",
     "react-native": "0.72.5",
     "react-native-safe-area-context": "^4.7.2",
     "react-native-screens": "^3.25.0"
