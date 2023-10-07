@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "ija09d3219b_identitypool_09d3219b",
+    "identityPoolName": "ijae3e78540_identitypool_e3e78540",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "ija09d3219b",
-    "userPoolName": "ija09d3219b_userpool_09d3219b",
+    "resourceNameTruncated": "ijae3e78540",
+    "userPoolName": "ijae3e78540_userpool_e3e78540",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -14,8 +14,8 @@
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
-    "emailVerificationSubject": "Your verification code",
-    "emailVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "IJA - Código de Verificação",
+    "emailVerificationMessage": "Aqui está o seu código: {####}",
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
@@ -31,15 +31,19 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "ija09d09d3219b_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "ijae3ee3e78540_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "09d3219b",
-    "resourceName": "ija09d3219b",
+    "sharedId": "e3e78540",
+    "resourceName": "ijae3e78540",
     "authSelections": "identityPoolAndUserPool",
-    "useDefault": "default",
+    "useDefault": "manual",
+    "usernameAttributes": [
+      "email"
+    ],
+    "triggers": {},
     "userPoolGroupList": [
-      "gerente",
-      "aprendiz"
+      "Aprendiz",
+      "Gestor"
     ],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
@@ -57,6 +61,15 @@
       ]
     },
     "breakCircularDependency": true,
-    "dependsOn": []
+    "dependsOn": [],
+    "thirdPartyAuth": false,
+    "userPoolGroups": true,
+    "adminQueries": true,
+    "hostedUI": false,
+    "authProviders": [],
+    "parentStack": {
+      "Ref": "AWS::StackId"
+    },
+    "permissions": []
   }
 }

@@ -7,7 +7,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "auth": {
-    "ija09d3219b": {
+    "ijae3e78540": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
       "IdentityPoolId": "string",
@@ -17,8 +17,8 @@ export type AmplifyDependentResourcesAttributes = {
       "UserPoolName": "string"
     },
     "userPoolGroups": {
-      "aprendizGroupRole": "string",
-      "gerenteGroupRole": "string"
+      "AprendizGroupRole": "string",
+      "GestorGroupRole": "string"
     }
   }
 }

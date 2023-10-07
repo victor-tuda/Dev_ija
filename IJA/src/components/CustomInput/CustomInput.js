@@ -1,9 +1,12 @@
 import React from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native';
 
-const CustomInput = ({value, setValue, placeholder, secureTextEntry}) => {
+import { AntDesign } from '@expo/vector-icons';
+
+const CustomInput = ({value, setValue, placeholder, secureTextEntry, icon}) => {
   return (
     <View style={styles.container}>
+      {icon && <AntDesign name={icon} size={24} color="black" style={styles.icon} />}
       <TextInput
         value={value}
         onChangeText={setValue}
@@ -22,12 +25,23 @@ const styles = StyleSheet.create({
 
     borderColor: '#e8e8e8',
     borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: 10,
 
     paddingHorizontal: 10,
     marginVertical: 5,
+
+    flexDirection: 'row'
   },
-  input: {},
+  input: {
+   fontSize: 15,
+   height: 40,
+   flex: 1
+  },
+  icon: {
+    alignItems: 'center',
+    marginTop: 6.5,
+    marginRight: 10
+  }
 });
 
 export default CustomInput;

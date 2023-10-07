@@ -13,7 +13,7 @@ const ConfirmEmailScreen = () => {
   const route = useRoute();
   const { control, handleSubmit } = useForm();
   const [code, setCode] = useState('');
-  const [ username ] = useState(route?.params?.username)
+  const [ username ] = useState(route?.params?.email)
   
   
   const navigation = useNavigation();
@@ -22,7 +22,7 @@ const ConfirmEmailScreen = () => {
   const onConfirmPressed = async data => {
     try{
       const response = await Auth.confirmSignUp(username, code)
-      navigation.navigate('Home');
+      navigation.navigate('SignIn');
     } catch(error){
       Alert.alert("Oops", error.message);
     }
@@ -45,10 +45,10 @@ const ConfirmEmailScreen = () => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.root}>
-        <Text style={styles.title}>Confirm your email</Text>
+        <Text style={styles.title}>Um código de verificação foi enviado para seu e-mail</Text>
 
         <CustomInput
-          placeholder="Enter your confirmation code"
+          placeholder="Digite o código de verificação"
           value={code}
           setValue={setCode}
         />
@@ -56,7 +56,7 @@ const ConfirmEmailScreen = () => {
         <CustomButton text="Confirm" onPress={onConfirmPressed} />
 
         <CustomButton
-          text="Resend code"
+          text="Reenviar o código"
           onPress={onResendPress}
           type="SECONDARY"
         />

@@ -26,9 +26,10 @@ const SignUpScreen = () => {
   const {control, handleSubmit, watch} = useForm();
   const pwd = watch('password');
 
+  const [email, setEmail] = useState("");
   const [name, setName] = useState('');
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [phone_number, setPhone_number] = useState('');
   const [password, setPassword] = useState('');
   const [passwordRepeat, setPasswordRepeat] = useState('');
 
@@ -37,11 +38,12 @@ const SignUpScreen = () => {
   const onRegisterPressed = async () => {
     try {
       const response = await Auth.signUp({
-        username,
+        name,
+        username: email,
+        phone_number,
         password,
-        attributes: {email, name, preferred_username: username},
       });
-      navigation.navigate('ConfirmEmail', { username });
+      navigation.navigate('ConfirmEmail', { email });
   
  
       /* Mudar o user group de forma automática
@@ -82,52 +84,54 @@ const SignUpScreen = () => {
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      <View style={styles.root}>
-        <Text style={styles.title}>Create an account</Text>
+      <View style={styles.cont1}>
+        <Text style={styles.title}>Crie uma conta</Text>
+      </View>
 
+      <View style={styles.cont2}>
         <CustomInput
-          placeholder="Name"
+          placeholder="Nome"
           value={name}
           setValue={setName}
         />
 
         <CustomInput
-          placeholder="Username"
-          value={username}
-          setValue={setUsername}
+          placeholder="Sobrenome"
+          value={lastName}
+          setValue={setLastName}
         />
 
         <CustomInput placeholder="Email" value={email} setValue={setEmail} />
+        <CustomInput placeholder="Telefone" value={phone_number} setValue={setPhone_number} />
+
         <CustomInput
-          placeholder="Password"
+          placeholder="Senha"
           value={password}
           setValue={setPassword}
           secureTextEntry
         />
         <CustomInput
-          placeholder="Repeat Password"
+          placeholder="Repita a senha"
           value={passwordRepeat}
           setValue={setPasswordRepeat}
           secureTextEntry
         />
 
-        <CustomButton text="Register" onPress={onRegisterPressed} />
+        <CustomButton text="Cadastrar" onPress={onRegisterPressed} />
 
         <Text style={styles.text}>
-          By registering, you confirm that you accept our{' '}
+          Ao registrar, você concorda com nossos{'\n '}
           <Text style={styles.link} onPress={onTermsOfUsePressed}>
-            Terms of Use
+            Termos de Uso
           </Text>{' '}
-          and{' '}
+          e{' '}
           <Text style={styles.link} onPress={onPrivacyPressed}>
-            Privacy Policy
+            Políticas de Privacidade
           </Text>
         </Text>
 
-        <SocialSignInButtons />
-
         <CustomButton
-          text="Have an account? Sign in"
+          text="Já tem uma conta? Faça o Login"
           onPress={onSignInPress}
           type="TERTIARY"
         />
@@ -137,7 +141,12 @@ const SignUpScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  root: {
+  cont1: {
+    alignItems: 'center',
+    padding: 20,
+    marginTop: 40
+  },
+  cont2: {
     alignItems: 'center',
     padding: 20,
   },

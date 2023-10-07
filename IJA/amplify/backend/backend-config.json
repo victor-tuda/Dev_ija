@@ -18,7 +18,7 @@
     }
   },
   "auth": {
-    "ija09d3219b": {
+    "ijae3e78540": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -34,7 +34,9 @@
           "EMAIL"
         ],
         "socialProviders": [],
-        "usernameAttributes": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
         "verificationMechanisms": [
           "EMAIL"
         ]
@@ -52,11 +54,12 @@
             "IdentityPoolId"
           ],
           "category": "auth",
-          "resourceName": "ija09d3219b"
+          "resourceName": "ijae3e78540"
         }
       ],
       "providerPlugin": "awscloudformation",
       "service": "Cognito-UserPool-Groups"
     }
-  }
+  },
+  "function": {}
 }

@@ -11,11 +11,14 @@ import {
   Alert
 } from 'react-native';
 
+// import from expo
+import { AntDesign } from '@expo/vector-icons';
+
 // importando bibliotecas amplify
 import { Auth,  Amplify } from 'aws-amplify';
 
 // importando bibliotecas locais
-import Logo from '../../../assets/images/Logo_1.png';
+import Logo from '../../../assets/images/ija-logo.png';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import SocialSignInButtons from '../../components/SocialSignInButtons';
@@ -56,7 +59,12 @@ const SignInScreen = () => {
         const role = userObj.signInUserSession.accessToken.payload["cognito:groups"] // Captura o groupID do usuario
         console.log(role);
 
-        navigation.navigate('Home'); //Navega para a tela Home
+        setLoading(false)
+
+        if (role == "Aprendiz") navigation.navigate('HomeScreenAprendiz')
+        else if (role == "Gestor") navigation.navigate('HomeScreenGestor')
+        else Alert.alert("Aguarde a empresa liberar o acesso");
+        
       } else {
         // Handle unsuccessful sign-in
         // You can display an error message to the user
@@ -79,37 +87,40 @@ const SignInScreen = () => {
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      <View style={styles.root}>
+      <View style={styles.cont1}>
         <Image
           source={Logo}
           style={[styles.logo, {height: height * 0.3}]}
           resizeMode="contain"
         />
+      </View>
 
+      <View style={styles.cont2}>
         <CustomInput
-          placeholder="Username"
+          icon="user"
+          placeholder="Email"
           value={username}
           setValue={setUsername}
+          
         />
         <CustomInput
-          placeholder="Password"
+          icon="lock"
+          placeholder="Senha"
           value={password}
           setValue={setPassword}
           secureTextEntry
         />
 
-        <CustomButton text={loading ? "Loading..." : "Sign In" } onPress={onSignInPressed} />
+        <CustomButton text={loading ? "Carregando..." : "Entrar" } onPress={onSignInPressed} />
 
         <CustomButton
-          text="Forgot password?"
+          text="Esqueceu a senha?"
           onPress={onForgotPasswordPressed}
           type="TERTIARY"
         />
 
-        <SocialSignInButtons />
-
         <CustomButton
-          text="Don't have an account? Create one"
+          text="Não tem uma conta? Crie uma aqui."
           onPress={onSignUpPress}
           type="TERTIARY"
         />
@@ -119,12 +130,16 @@ const SignInScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  root: {
+  cont1: {
+    alignItems: 'center',
+    marginTop: 40,
+  },
+  cont2: {
     alignItems: 'center',
     padding: 20,
   },
   logo: {
-    width: '70%',
+    width: '100%',
     maxWidth: 300,
     maxHeight: 200,
   },

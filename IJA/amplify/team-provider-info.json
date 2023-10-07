@@ -9,14 +9,15 @@
       "UnauthRoleName": "amplify-ija-dev-202407-unauthRole",
       "StackName": "amplify-ija-dev-202407",
       "StackId": "arn:aws:cloudformation:us-west-2:995357960745:stack/amplify-ija-dev-202407/a2a79f70-5bfa-11ee-bf40-06a62a460d0b",
-      "AmplifyAppId": "d38ztc8lh5gpy1"
+      "AmplifyAppId": "d38ztc8lh5gpy1",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-ija-dev-202407-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
       "api": {
         "ija": {}
       },
       "auth": {
-        "ija09d3219b": {},
+        "ijae3e78540": {},
         "userPoolGroups": {}
       }
     }
