@@ -3,10 +3,8 @@
 Concept: https://dribbble.com/shots/5476562-Forgot-Password-Verification/attachments
 
 */
-import { Animated, Image, SafeAreaView, Text, View, Alert } from 'react-native';
+import { Animated, Image, SafeAreaView, Text, View } from 'react-native';
 import React, { useState } from 'react';
-
-import { Auth } from 'aws-amplify';
 
 import {
   CodeField,
@@ -14,8 +12,6 @@ import {
   useBlurOnFulfill,
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
-import { useRoute } from '@react-navigation/native'
-import {useNavigation} from '@react-navigation/core';
 
 import styles, {
   ACTIVE_CELL_BG_COLOR,
@@ -24,11 +20,11 @@ import styles, {
   DEFAULT_CELL_BG_COLOR,
   NOT_EMPTY_CELL_BG_COLOR,
 } from './styles';
-import CustomButton from '../../components/CustomButton';
+import CustomButton from '../CustomButton';
 
 const { Value, Text: AnimatedText, View: AnimatedView } = Animated;
 
-const CELL_COUNT = 6;
+const CELL_COUNT = 4;
 const source = {
   uri: 'https://user-images.githubusercontent.com/4661784/56352614-4631a680-61d8-11e9-880d-86ecb053413d.png',
 };
@@ -53,33 +49,13 @@ const animateCell = ({ hasValue, index, isFocused }) => {
 
 
 
-const VerificationCode = ({ sendCodeToParent }) => {
-    const route = useRoute();
-    const navigation = useNavigation();
-    const [value, setValue] = useState('');
-    const ref = useBlurOnFulfill({ code, cellCount: CELL_COUNT });
-    const [props, getCellOnLayoutHandler] = useClearByFocusCell({
-        code,
-        setValue,
-    });
-
-    const [code, setCode] = useState('');
-    const [ username ] = useState(route?.params?.email)
-
-
-  const onConfirmPressed = async () => {
-    try{
-      const response = await Auth.confirmSignUp(username, code)
-      navigation.navigate('SignIn');
-    } catch(error){
-      Alert.alert("Oops", error.message);
-    }
-    
-  };
-
-  const handleButtonClick = () => {
-    onConfirmPressed()
-  }
+function VerificationCode ({ sendCodeToParent }) {
+  const [value, setValue] = useState('');
+  const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
+  const [props, getCellOnLayoutHandler] = useClearByFocusCell({
+    value,
+    setValue,
+  });
 
   const renderCell = ({ index, symbol, isFocused }) => {
     const hasValue = Boolean(symbol);
@@ -137,16 +113,16 @@ const VerificationCode = ({ sendCodeToParent }) => {
       <CodeField
         ref={ref}
         {...props}
-        value={code}
-        onChangeText={setCode}
+        value={value}
+        onChangeText={setValue}
         cellCount={CELL_COUNT}
         rootStyle={styles.codeFiledRoot}
         keyboardType="number-pad"
         textContentType="oneTimeCode"
         renderCell={renderCell}
       />
-      <View style={{marginTop: 30}}>
-        <CustomButton style={styles.nextButtonText} text={"Checar"} onPress={handleButtonClick} />
+      <View style={styles.nextButtonText}>
+        <Text style={styles.nextButtonText}>Verify</Text>
       </View>
     </SafeAreaView>
   );

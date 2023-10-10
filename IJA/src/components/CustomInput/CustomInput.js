@@ -3,7 +3,7 @@ import {View, Text, TextInput, StyleSheet} from 'react-native';
 
 import { AntDesign } from '@expo/vector-icons';
 
-const CustomInput = ({value, setValue, placeholder, secureTextEntry, icon}) => {
+const CustomInput = ({value, setValue, placeholder, secureTextEntry, icon, autoCap}) => {
   return (
     <View style={styles.container}>
       {icon && <AntDesign name={icon} size={24} color="black" style={styles.icon} />}
@@ -13,6 +13,8 @@ const CustomInput = ({value, setValue, placeholder, secureTextEntry, icon}) => {
         placeholder={placeholder}
         style={styles.input}
         secureTextEntry={secureTextEntry}
+        autoCapitalize={autoCap}
+        
       />
     </View>
   );

@@ -101,6 +101,7 @@ const SignInScreen = () => {
           placeholder="Email"
           value={username}
           setValue={setUsername}
+          autoCap={"none"}
           
         />
         <CustomInput
@@ -109,6 +110,7 @@ const SignInScreen = () => {
           value={password}
           setValue={setPassword}
           secureTextEntry
+          autoCap={"none"}
         />
 
         <CustomButton text={loading ? "Carregando..." : "Entrar" } onPress={onSignInPressed} />

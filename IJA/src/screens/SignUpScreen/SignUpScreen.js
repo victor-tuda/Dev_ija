@@ -38,7 +38,7 @@ const SignUpScreen = () => {
   const onRegisterPressed = async () => {
     try {
       const response = await Auth.signUp({
-        name,
+        Name:name,
         username: email,
         phone_number,
         password,
@@ -101,7 +101,7 @@ const SignUpScreen = () => {
           setValue={setLastName}
         />
 
-        <CustomInput placeholder="Email" value={email} setValue={setEmail} />
+        <CustomInput placeholder="Email" value={email} setValue={setEmail} autoCap={"none"} />
         <CustomInput placeholder="Telefone" value={phone_number} setValue={setPhone_number} />
 
         <CustomInput
@@ -109,12 +109,14 @@ const SignUpScreen = () => {
           value={password}
           setValue={setPassword}
           secureTextEntry
+          autoCap={"none"}
         />
         <CustomInput
           placeholder="Repita a senha"
           value={passwordRepeat}
           setValue={setPasswordRepeat}
           secureTextEntry
+          autoCap={"none"}
         />
 
         <CustomButton text="Cadastrar" onPress={onRegisterPressed} />
