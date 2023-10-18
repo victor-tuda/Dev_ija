@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "ijae3e78540_identitypool_e3e78540",
+    "identityPoolName": "ija44f3cadc_identitypool_44f3cadc",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "ijae3e78540",
-    "userPoolName": "ijae3e78540_userpool_e3e78540",
+    "resourceNameTruncated": "ija44f3cadc",
+    "userPoolName": "ija44f3cadc_userpool_44f3cadc",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -31,20 +31,25 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "ijae3ee3e78540_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "ija44f44f3cadc_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "e3e78540",
-    "resourceName": "ijae3e78540",
+    "sharedId": "44f3cadc",
+    "resourceName": "ija44f3cadc44f3cadc",
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "manual",
+    "thirdPartyAuth": false,
     "usernameAttributes": [
       "email"
     ],
-    "triggers": {},
-    "userPoolGroupList": [
-      "Aprendiz",
-      "Gestor"
-    ],
+    "userPoolGroups": false,
+    "adminQueries": false,
+    "triggers": {
+      "PostConfirmation": [
+        "custom"
+      ]
+    },
+    "hostedUI": false,
+    "userPoolGroupList": [],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
     "useEnabledMfas": true,
@@ -61,15 +66,22 @@
       ]
     },
     "breakCircularDependency": true,
-    "dependsOn": [],
-    "thirdPartyAuth": false,
-    "userPoolGroups": true,
-    "adminQueries": true,
-    "hostedUI": false,
+    "dependsOn": [
+      {
+        "category": "function",
+        "resourceName": "ija44f3cadc44f3cadcPostConfirmation",
+        "triggerProvider": "Cognito",
+        "attributes": [
+          "Arn",
+          "Name"
+        ]
+      }
+    ],
     "authProviders": [],
     "parentStack": {
       "Ref": "AWS::StackId"
     },
+    "authTriggerConnections": "[\n  {\n    \"triggerType\": \"PostConfirmation\",\n    \"lambdaFunctionName\": \"ija44f3cadc44f3cadcPostConfirmation\"\n  }\n]",
     "permissions": []
   }
 }

@@ -7,7 +7,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "auth": {
-    "ijae3e78540": {
+    "ija44f3cadc44f3cadc": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
       "IdentityPoolId": "string",
@@ -15,10 +15,15 @@ export type AmplifyDependentResourcesAttributes = {
       "UserPoolArn": "string",
       "UserPoolId": "string",
       "UserPoolName": "string"
-    },
-    "userPoolGroups": {
-      "AprendizGroupRole": "string",
-      "GestorGroupRole": "string"
+    }
+  },
+  "function": {
+    "ija44f3cadc44f3cadcPostConfirmation": {
+      "Arn": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
     }
   }
 }

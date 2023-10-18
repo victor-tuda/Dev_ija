@@ -13,12 +13,17 @@
       "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-ija-dev-202407-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
+      "auth": {
+        "ija44f3cadc44f3cadc": {}
+      },
+      "function": {
+        "ija44f3cadc44f3cadcPostConfirmation": {
+          "deploymentBucketName": "amplify-ija-dev-202407-deployment",
+          "s3Key": "amplify-builds/ija44f3cadc44f3cadcPostConfirmation-7a6264653772784f7966-build.zip"
+        }
+      },
       "api": {
         "ija": {}
-      },
-      "auth": {
-        "ijae3e78540": {},
-        "userPoolGroups": {}
       }
     }
   }

@@ -3,13 +3,16 @@ import {View, Text, StyleSheet, ScrollView, Alert} from 'react-native';
 import { useForm } from 'react-hook-form'
 import {useNavigation} from '@react-navigation/core';
 
-import { Auth } from 'aws-amplify';
+import { Auth, API } from 'aws-amplify';
 import AWS from 'aws-sdk';
 
 import CustomInput from '../../components/CustomInput';
+import PhoneInput from '../../components/PhoneInput';
 import CustomButton from '../../components/CustomButton';
 import SocialSignInButtons from '../../components/SocialSignInButtons';
 import awsExports from '../../aws-exports';
+
+import { createAprendiz } from '../../graphql/mutations'
 
 Auth.configure(awsExports);
 
@@ -33,16 +36,21 @@ const SignUpScreen = () => {
   const [password, setPassword] = useState('');
   const [passwordRepeat, setPasswordRepeat] = useState('');
 
+
   const navigation = useNavigation();
 
   const onRegisterPressed = async () => {
     try {
       const response = await Auth.signUp({
-        Name:name,
         username: email,
-        phone_number,
         password,
+        attributes: {
+          given_name: name,
+          middle_name: lastName,
+          phone_number: phone_number,
+        }
       });
+
       navigation.navigate('ConfirmEmail', { email });
   
  
@@ -102,7 +110,7 @@ const SignUpScreen = () => {
         />
 
         <CustomInput placeholder="Email" value={email} setValue={setEmail} autoCap={"none"} />
-        <CustomInput placeholder="Telefone" value={phone_number} setValue={setPhone_number} />
+        <PhoneInput placeholder="Telefone" value={phone_number} setValue={setPhone_number} />
 
         <CustomInput
           placeholder="Senha"

@@ -1,13 +1,32 @@
 {
   "api": {
     "ija": {
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "ija44f3cadc44f3cadc"
+        }
+      ],
       "output": {
         "authConfig": {
-          "additionalAuthenticationProviders": [],
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            },
+            {
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "authija44f3cadc44f3cadc"
+              }
+            }
+          ],
           "defaultAuthentication": {
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 7
+              "apiKeyExpirationDays": 30,
+              "description": "api key description"
             },
             "authenticationType": "API_KEY"
           }
@@ -18,9 +37,19 @@
     }
   },
   "auth": {
-    "ijae3e78540": {
+    "ija44f3cadc44f3cadc": {
       "customAuth": false,
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "ija44f3cadc44f3cadcPostConfirmation",
+          "triggerProvider": "Cognito"
+        }
+      ],
       "frontendAuthConfig": {
         "mfaConfiguration": "OFF",
         "mfaTypes": [
@@ -43,23 +72,31 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
-    },
-    "userPoolGroups": {
-      "dependsOn": [
-        {
-          "attributes": [
-            "UserPoolId",
-            "AppClientIDWeb",
-            "AppClientID",
-            "IdentityPoolId"
-          ],
-          "category": "auth",
-          "resourceName": "ijae3e78540"
-        }
-      ],
-      "providerPlugin": "awscloudformation",
-      "service": "Cognito-UserPool-Groups"
     }
   },
-  "function": {}
+  "function": {
+    "ija44f3cadc44f3cadcPostConfirmation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_ija44f3cadc44f3cadcPostConfirmation_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "ija44f3cadc44f3cadcPostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_ija44f3cadc44f3cadcPostConfirmation_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "ija44f3cadc44f3cadcPostConfirmation"
+        }
+      ]
+    }
+  }
 }
