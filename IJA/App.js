@@ -6,13 +6,15 @@ import { Amplify } from 'aws-amplify';
 import config from './src/aws-exports';
 
 Amplify.configure(config);
+const isDevMode = true;
 
 const App = () => {
-  return (
-    <SafeAreaView style={styles.root}>
-      <Navigation />
-    </SafeAreaView>
-  );
+
+    return (
+      <SafeAreaView style={styles.root}>
+        <Navigation />
+      </SafeAreaView>
+    );
 };
 
 const styles = StyleSheet.create({

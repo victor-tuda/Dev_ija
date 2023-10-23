@@ -61,9 +61,11 @@ const SignInScreen = () => {
 
         setLoading(false)
 
+        // Checa o groupID e fornece autorização em função do groupID
         if (role == "Aprendiz") navigation.navigate('HomeScreenAprendiz')
         else if (role == "Gestor") navigation.navigate('HomeScreenGestor')
         else Alert.alert("Aguarde a empresa liberar o acesso");
+        //navigation.navigate('HomeScreenAprendiz')
         
       } else {
         // Handle unsuccessful sign-in

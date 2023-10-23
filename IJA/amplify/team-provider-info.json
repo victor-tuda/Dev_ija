@@ -19,7 +19,7 @@
       "function": {
         "ija44f3cadc44f3cadcPostConfirmation": {
           "deploymentBucketName": "amplify-ija-dev-202407-deployment",
-          "s3Key": "amplify-builds/ija44f3cadc44f3cadcPostConfirmation-7a6264653772784f7966-build.zip"
+          "s3Key": "amplify-builds/ija44f3cadc44f3cadcPostConfirmation-4d59554f664933617732-build.zip"
         }
       },
       "api": {

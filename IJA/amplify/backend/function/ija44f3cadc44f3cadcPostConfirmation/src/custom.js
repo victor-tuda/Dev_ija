@@ -10,12 +10,15 @@ exports.handler = async (event, context) => {
     let params = {
       Item: {
         'id': {S: event.request.userAttributes.sub},
-        '__typename': {S: 'User'},
+        'nome': {S: event.request.userAttributes.given_name},
+        'sobrenome': {S: event.request.userAttributes.middle_name},
+        'celular': {S: event.request.userAttributes.phone_number},
         'email': {S: event.request.userAttributes.email},
+        '__typename': {S: 'Aprendiz'},
         'createdAt': {S: date.toISOString()},
         'updatedAt': {S:date.toISOString()}
       },
-      TableName: process.env.USERTABLE
+      TableName: process.env.APRENDIZTABLE
     }
 
     try {
