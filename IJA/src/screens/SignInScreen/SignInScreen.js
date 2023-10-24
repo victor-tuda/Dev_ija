@@ -40,7 +40,7 @@ const SignInScreen = () => {
     setLoading(true);
     try {
       const user = await Amplify.Auth.signIn(username, password);
-      console.log('User signed in:', user);
+      //console.log('User signed in:', user);
   
       return user; // Return the user object
     } catch (error) {
