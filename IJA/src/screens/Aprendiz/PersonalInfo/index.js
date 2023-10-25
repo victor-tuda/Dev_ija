@@ -10,8 +10,9 @@ const UserProfileView = () => {
     const route = useRoute();
     const navigation = useNavigation();
 
-    const [ id ] = useState(route?.params?.ID)
+    const [ id ] = useState(route?.params?.idAprendiz)
     const [ aprendiz, setAprendiz ] = useState('')
+
 
     useEffect(() => {
       async function fetchData() {
@@ -23,7 +24,6 @@ const UserProfileView = () => {
     
           setAprendiz(responseAprendiz.data.getAprendiz);
   
-          console.log(aprendiz);
         } catch (error) {
           console.error('Error fetching data:', error);
         }
@@ -37,13 +37,12 @@ const UserProfileView = () => {
         <View style={styles.header}>
           <View style={styles.headerContent}>
             <View style={{ flex: 1 }}>
-              <Text style={styles.name}>Informações Pessoais</Text>
-              <Text style={styles.userInfo}>{aprendiz.nome} {' '} {aprendiz.sobrenome}</Text>
+              <Text style={styles.name}>Informações Pessoais</Text>            
             </View>
             <View>
               <Image
                 style={styles.avatar}
-                source={require("../../../../assets/icons/info-icon.png")}
+                source={require("../../../../assets/icons/person-icon.png")}
               />
             </View>
           </View>
@@ -59,8 +58,12 @@ const UserProfileView = () => {
             <Text style={styles.SubjectText}>{aprendiz.sobrenome}</Text>
           </Pressable>
           <Pressable style={styles.RectangleShapeView}>
-            <Text style={styles.headtText}>Idade</Text>
-            <Text style={styles.SubjectText}>{aprendiz.idade}</Text>
+            <Text style={styles.headtText}>Email</Text>
+            <Text style={styles.SubjectText}>{aprendiz.email}</Text>
+          </Pressable>
+          <Pressable style={styles.RectangleShapeView}>
+            <Text style={styles.headtText}>Setor</Text>
+            <Text style={styles.SubjectText}>{aprendiz.setor}</Text>
           </Pressable>
           <Pressable style={styles.RectangleShapeView}>
             <Text style={styles.headtText}>Cargo</Text>
@@ -77,7 +80,7 @@ const styles = StyleSheet.create({
   header: {
     backgroundSize: "contain",
     height: screenHeight * 0.25,
-    marginTop: 20
+    marginTop: 20,
   },
 
   headerContent: {
@@ -93,8 +96,8 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 63,
     borderWidth: 2,
-    borderColor: "white",
-    marginBottom: 10,
+    borderColor: "black",
+    marginBottom: 10,    
   },
   location: {
     borderColor: "white",
@@ -119,7 +122,7 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 16,
     marginLeft: 20,
-    marginTop: 10
+    marginTop: 3
   },
   userInfo: {
     fontSize: 20,
@@ -136,9 +139,9 @@ const styles = StyleSheet.create({
     elevation: 3
   },
   body: {
-    backgroundColor: "white",
-    height: 500,
-    alignItems: "center"
+    backgroundColor: "#D3E0EA",
+    height: screenHeight,
+    alignItems: "center",
   },
   text: {
     color: "white",
@@ -147,13 +150,13 @@ const styles = StyleSheet.create({
   RectangleShapeView: {
     marginTop: 20,
     width: "80%",
-    height: 80,
+    height: 65,
     backgroundColor: "white",
     color: "black",
     borderRadius: 10,
     borderColor: "black",
     borderWidth: 1,
-    elevation: 3
+    elevation: 3,
   }
 });
 

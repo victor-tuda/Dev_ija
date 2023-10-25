@@ -18,7 +18,7 @@ import { createAprendiz } from '../../../graphql/mutations';
 const Stack = createNativeStackNavigator();
 
 const HomeScreen = () => {
-  const [ID, setID] = useState('');
+  const [idAprendiz, setIDAprendiz] = useState('');
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
   const [tarefas, setTarefas] = useState('');
@@ -33,9 +33,9 @@ const HomeScreen = () => {
         // Capturando as informações de autenticação do usuário
         const userObj = await Auth.currentAuthenticatedUser();
         const id = userObj.attributes.sub;
-        setID(id);
+        setIDAprendiz(id);
 
-        // Capturando o Aprendiz relacionado ao ID de autenticação
+        // Capturando o Aprendiz relacionado ao idAprendiz de autenticação
         const verificaAprendiz = await API.graphql({
           query: getAprendiz,
           variables: { id },
@@ -46,7 +46,7 @@ const HomeScreen = () => {
         setAprendiz(aprendizObj);
 
         // Verificando se esse objeto está vazio
-        if (Object.keys(aprendizObj).length === 0 ){
+        if (aprendizObj === null ){
           const aprendizObj = {
             id: userObj.attributes.sub,
             nome: userObj.attributes.given_name,
@@ -59,11 +59,11 @@ const HomeScreen = () => {
           aprendizRetorno = await API.graphql(graphqlOperation(createAprendiz, {input: aprendizObj}))
           setAprendiz(aprendizRetorno)
         }
-
         // Capturando as informações da tabela de Tarefas relacionadas ao Aprendiz
         const responseAprendizTarefas = await API.graphql({
           query: listTarefaAprendizs,
         });
+        
         const aprendizTarefas = responseAprendizTarefas
 
         // Capturando informações finais
@@ -92,7 +92,7 @@ const HomeScreen = () => {
         </View>
       </View>
       <View style={styles.secondContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate('PersonalInfoAprendiz', { ID })}>
+        <TouchableOpacity onPress={() => navigation.navigate('PersonalInfoAprendiz', { idAprendiz })}>
           <View style={styles.circle}>
             <Image
               source={require('/home/victor/Workspace/Dev_ija/IJA/assets/icons/info-icon.png')}

@@ -17,6 +17,8 @@ import HorariosAprendiz from '../screens/Aprendiz/Horarios';
 
 import HomeScreenGestor from '../screens/Gestor/HomeScreen'
 import TarefasGestor from '../screens/Gestor/Tarefas';
+import AprendizesGestor from '../screens/Gestor/Aprendizes';
+import NovoAprendizGestor from '../screens/Gestor/NovoAprendiz';
 import PersonalInfoGestor from '../screens/Gestor/PersonalInfo';
 import RelatoriosGestor from '../screens/Gestor/Relatórios';
 import HorariosGestor from '../screens/Gestor/Horarios';
@@ -40,6 +42,8 @@ const Navigation = () => {
 
         <Stack.Screen name="HomeScreenGestor" component={HomeScreenGestor} />
         <Stack.Screen name="TarefasGestor" component={TarefasGestor} />
+        <Stack.Screen name="AprendizesGestor" component={AprendizesGestor} />
+        <Stack.Screen name="NovoAprendizGestor" component={NovoAprendizGestor} />
         <Stack.Screen name="PersonalInfoGestor" component={PersonalInfoGestor} />
         <Stack.Screen name="RelatoriosGestor" component={RelatoriosGestor} />
         <Stack.Screen name="HorariosGestor" component={HorariosGestor} />

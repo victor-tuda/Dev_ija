@@ -114,15 +114,15 @@ const HomeScreen = () => {
             <Text>Tarefas</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('RelatoriosGestor')}>
+        <TouchableOpacity onPress={() => navigation.navigate('AprendizesGestor', { ID })}>
           <View style={styles.circle}>
             <Image
-              source={require('/home/victor/Workspace/Dev_ija/IJA/assets/icons/document-icon.png')}
+              source={require('/home/victor/Workspace/Dev_ija/IJA/assets/icons/aprendizes-icon.png')}
               style={styles.image}
             />
           </View>
           <View style={styles.textContainer}>
-            <Text>Relatórios</Text>
+            <Text>Aprendizes</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={openModal}>

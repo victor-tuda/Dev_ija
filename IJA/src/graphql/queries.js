@@ -429,8 +429,8 @@ export const listTarefaAprendizs = /* GraphQL */ `
           id
           titulo
           descricao
-          data
-          hora
+          prazoIni
+          prazoFim
           gestorID
           createdAt
           updatedAt
